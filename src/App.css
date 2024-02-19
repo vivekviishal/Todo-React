@@ -1,27 +1,24 @@
-/* App.css */
 
-/* Resetting default margin and padding */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Body styles */
 body {
   font-family: 'Roboto', sans-serif;
-  background-color: #f8f9fa;
-  background-image: url('./components/bg2.jpg');
+  background-color: #FFF6E4;
 }
 
-/* Navbar styles */
 .navbar {
-  background-color: #ffaa2bdf;
-  /* Change as needed */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffb443ba;
   padding: 15px 40px;
 }
 
-/* Brand styles */
 .navbar-brand {
   display: flex;
   align-items: center;
@@ -29,12 +26,30 @@ body {
 
 .company-name {
   color: #000000;
-  /* Text color */
   font-size: 30px;
-  /* Font size */
   text-decoration: none;
-  /* Remove underline */
+  font-weight: 600;
 }
+
+.weather-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  background-color: #000000;
+  padding: 10px;
+  border-radius: 10%;
+}
+
+a {
+  text-decoration: none;
+}
+
+.weather-info p {
+  margin: 0;
+  font-size: 16px;
+  color: #FFF6E4;
+}
+
 
 
 /* Container for the todo list */
@@ -47,7 +62,6 @@ body {
   padding: 20px;
 }
 
-/* Input and button container */
 .input-container {
   display: flex;
 }
@@ -62,7 +76,6 @@ body {
   font-size: 16px;
 }
 
-/* Add button styles */
 .input-container button {
   padding: 10px 20px;
   background-color: #ff9900;
@@ -77,12 +90,10 @@ body {
   background-color: #ff6a00;
 }
 
-/* List of tasks styles */
 .task-list {
   margin-top: 20px;
 }
 
-/* Individual task item styles */
 .task-item {
   display: flex;
   align-items: center;
@@ -102,7 +113,6 @@ body {
   text-decoration: line-through;
 }
 
-/* Delete button styles */
 .task-item button {
   background-color: #ffda893a;
   border: none;
@@ -117,4 +127,50 @@ body {
 
 .completed p {
   text-decoration: line-through;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 10px; /* Adjusted for mobile */
+    margin: 20px; /* Adjusted for mobile */
+    max-width: calc(100% - 40px); /* Adjusted for mobile */
+  }
+
+  .navbar {
+    padding: 10px 20px; /* Adjusted for mobile */
+  }
+
+  .company-name {
+    font-size: 24px; /* Adjusted for mobile */
+  }
+
+  .weather-info {
+    padding: 8px; /* Adjusted for mobile */
+  }
+
+  .weather-info p {
+    font-size: 14px; /* Adjusted for mobile */
+  }
+
+  .input-container input[type="text"] {
+    padding: 8px; /* Adjusted for mobile */
+    font-size: 14px; /* Adjusted for mobile */
+  }
+
+  .input-container button {
+    padding: 8px 16px; /* Adjusted for mobile */
+    font-size: 16px; /* Adjusted for mobile */
+  }
+
+  .task-item {
+    padding: 8px; /* Adjusted for mobile */
+  }
+
+  .task-item p {
+    font-size: 16px; /* Adjusted for mobile */
+  }
+
+  .task-item button {
+    padding: 3px; /* Adjusted for mobile */
+  }
 }

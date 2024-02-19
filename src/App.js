@@ -5,12 +5,33 @@ import './App.css';
 function App() {
   const [todoList, setTodoList] = useState([]);
   const [newTask, setNewTask] = useState("");
+  const [weatherData, setWeatherData] = useState(null);
+  const googleWeather = "https://www.google.com/search?q=weather&rlz=1C1UEAD_enIN983IN983&oq=weathe&gs_lcrp=EgZjaHJvbWUqDwgAECMYJxidAhiABBiKBTIPCAAQIxgnGJ0CGIAEGIoFMgYIARBFGDkyDAgCECMYJxiABBiKBTINCAMQABiDARixAxiABDINCAQQABiSAxiABBiKBTIQCAUQABiDARiSAxixAxiABDIGCAYQRRg8MgYIBxBFGDyoAgCwAgA&sourceid=chrome&ie=UTF-8";
+
+  const fetchWeather = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+        const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=af0cc3a7b32f5e5dc2fc99635149d066`;
+        fetch(url)
+          .then(response => response.json())
+          .then(data => {
+            setWeatherData(data);
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
+      });
+    }
+  };
 
   useEffect(() => {
     const storedTodoList = JSON.parse(localStorage.getItem('todoList'));
     if (storedTodoList) {
       setTodoList(storedTodoList);
     }
+    fetchWeather();
   }, []);
 
   const handleChange = (event) => {
@@ -47,11 +68,18 @@ function App() {
 
   return (
     <div>
-      <nav className="navbar">
+      <div className="navbar">
         <div className="navbar-brand">
           <span className="company-name">Todo..</span>
         </div>
-      </nav>
+        {weatherData && (
+          <a href={googleWeather} target='_blank'><div className="weather-info">
+            <p>{Math.round(weatherData.main.temp - 273.15)}°C</p>
+            <p>{weatherData.name}</p>
+          </div>
+          </a>
+        )}
+      </div>
       <div className="container">
         <div className="input-container">
           <input type="text" id='input-field' onChange={handleChange} onKeyPress={handleKey} />
